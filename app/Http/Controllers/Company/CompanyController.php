@@ -44,18 +44,27 @@ class CompanyController extends Controller
             'logo' => ['nullable', 'dimensions:min_width=100, min_height=100'],
             'website' => ['nullable']
         ]);
+        $fileName = $this->upload($request);
 
-        Company::create($request->all());
+        Company::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'logo' => $fileName,
+            'website' => $request->website
+        ]);
 
+        return redirect('/admin/companies')->with('success', 'Company created successfully!');
+    }
+
+    public function upload($request)
+    {
         if ($request->hasFile('logo')) {
             $fileExt = $request->file('logo')->getClientOriginalExtension();
             $fileName = $request->name . '_logo_' . '_' . date("Y-m-d") . '.' . $fileExt;
-            $request->logo->storeAs('storage', $fileName);
+            $request->logo->storeAs('public', $fileName);
             // $request->file('logo')->move(public_path('storage'), $fileName);
             return $fileName;
         }
-
-        return redirect('/admin/companies')->with('success', 'Company created successfully!');
     }
 
     /**
@@ -91,12 +100,18 @@ class CompanyController extends Controller
     {
         $request->validate([
             'name' => ['required'],
-            'email' => ['email', 'unique:companies'],
+            'email' => ['email'],
             'logo' => ['nullable', 'dimensions:min_width=100, min_height=100'],
             'website' => ['nullable']
         ]);
+        $fileName = $this->upload($request);
 
-        $company->update($request->all());
+        $company->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'logo' => $fileName,
+            'website' => $request->website
+        ]);
         return redirect('/admin/companies')->with('success', 'Company updated successfully!');
     }
 
@@ -106,10 +121,10 @@ class CompanyController extends Controller
      * @param  \App\Models\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Company $company)
+    public function destroy($id)
     {
-        $_company = Company::findOrFail($company);
-        $_company->delete();
+        $company = Company::findOrFail($id);
+        $company->delete();
 
         return redirect('/admin/companies')->with('success', 'Company is successfully deleted');
     }

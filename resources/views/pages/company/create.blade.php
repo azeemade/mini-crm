@@ -69,7 +69,7 @@
                     <label for="floatingInput1" class="text-gray-700">Email</label>
                 </div>
                 <div class="form-floating mb-5">
-                    <input type="url" name="website" class="form-control
+                    <input type="text" name="website" class="form-control
                         block
                         w-full
                         px-3
@@ -87,7 +87,7 @@
                     <label for="floatingInput1" class="text-gray-700">Website</label>
                 </div>
                 <div class="mb-5">
-                    <label for="formFileSm" class="form-label inline-block mb-2 text-gray-700">Logo (100x100)</label>
+                    <label for="formFileSm" class="text-sm form-label inline-block mb-2 text-gray-700">Logo (100x100)</label>
                     <input name="logo" class="form-control
                         block
                         w-full

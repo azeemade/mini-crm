@@ -16,11 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('pages.auth.login');
-});
-Route::post('/auth/login', [AccountController::class, 'login'])->name('Login');
+})->name('home');
+Route::post('/login', [AccountController::class, 'login'])->name('login');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('admin/dashboard', [AccountController::class, 'dashboard'])->name('Dashboard');
+    Route::get('admin/dashboard', [AccountController::class, 'dashboard'])->name('dashboard');
     Route::resource('/admin/employees', App\Http\Controllers\Employee\EmployeeController::class);
     Route::resource('/admin/companies', App\Http\Controllers\Company\CompanyController::class);
     Route::get('admin/logout', [AccountController::class, 'logout'])->name('logout');

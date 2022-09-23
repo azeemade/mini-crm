@@ -16,8 +16,8 @@ class Employee extends Model
         'phone'
     ];
 
-    public function company()
+    public function myCompany()
     {
-        return $this->belongsTo(Company::class);
+        return $this->hasMany(Employee::class, 'company');
     }
 }

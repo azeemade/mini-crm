@@ -54,8 +54,8 @@
                 @foreach ($companies as $item)
                     <tr class="bg-white border-b">
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $item->id }}</td>
-                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                            <img src="{{ $item->logo }}" alt="">
+                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap justify-center flex">
+                            <img src="{{ asset('storage/'.$item->logo) }}" alt="" class="h-10 w-10">
                         </td>
                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                             {{ $item->name }}
@@ -64,20 +64,26 @@
                             {{ $item->email }}
                         </td>
                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                            {{ count($item->employees) }}
+                            @if($item->employees != NULL)
+                                {{ count($item->employees) }}
+                            @else
+                                0
+                            @endif
                         </td>
                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                             {{ $item->website }}
                         </td>
-                        <td>
-                            <a href="{{ url('admin/companies/'.$item->id)}}" class="mr-4 dark:text-gray-500">Edit</a>
-                            <form action="{{ route('companies.destroy', $item->id)}}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="text-red-500 inline-block px-6 py-2.5 bg-transparent font-medium">
-                                    Remove
-                                </button>
-                            </form>
+                        <td class="px-6 py-4">
+                            <div class="flex items-center justify-center">
+                                <a href="{{ url('admin/companies/'.$item->id.'/edit')}}" class="mr-4 dark:text-gray-500">Edit</a>
+                                <form action="{{ route('companies.destroy', $item->id)}}" method="POST" class="mb-0">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-red-500 inline-block px-6 bg-transparent font-medium">
+                                        Remove
+                                    </button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 @endforeach

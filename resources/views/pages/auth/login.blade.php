@@ -2,7 +2,7 @@
 @section('content')
     <div class="flex justify-center items-center h-screen">
         <div class="">
-            <form method="post" action="/auth/login" enctype="multipart/form-data" class="shadow-md rounded-lg w-[400px] p-4">
+            <form method="post" action="/login" enctype="multipart/form-data" class="shadow-md rounded-lg w-[400px] p-4">
                 <p class="text-medium text-3xl text-center mb-4">mini-crm</p>
                 @if ($errors->any())
                     <div class="bg-red-100 rounded-lg py-5 px-6 mb-4 text-base text-red-700 mb-3" role="alert">
