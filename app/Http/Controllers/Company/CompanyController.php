@@ -75,7 +75,7 @@ class CompanyController extends Controller
      */
     public function show(Company $company)
     {
-        //
+        return view('pages.company.show', ['company' => $company]);
     }
 
     /**

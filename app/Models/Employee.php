@@ -18,6 +18,6 @@ class Employee extends Model
 
     public function myCompany()
     {
-        return $this->hasMany(Employee::class, 'company');
+        return $this->belongsTo(Employee::class);
     }
 }

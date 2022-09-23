@@ -39,9 +39,9 @@
                 <th scope="col" class="text-sm font-medium text-white px-6 py-4">
                   Email
                 </th>
-                <th scope="col" class="text-sm font-medium text-white px-6 py-4">
+                {{-- <th scope="col" class="text-sm font-medium text-white px-6 py-4">
                     No of employees
-                </th>
+                </th> --}}
                 <th scope="col" class="text-sm font-medium text-white px-6 py-4">
                     Website
                 </th>
@@ -63,13 +63,13 @@
                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                             {{ $item->email }}
                         </td>
-                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                        {{-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                             @if($item->employees != NULL)
                                 {{ count($item->employees) }}
                             @else
                                 0
                             @endif
-                        </td>
+                        </td> --}}
                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                             {{ $item->website }}
                         </td>
